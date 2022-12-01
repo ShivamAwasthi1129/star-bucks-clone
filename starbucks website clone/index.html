@@ -1,0 +1,950 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon-32x32.png">
+    <title>| Starbucks (clone)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-color: #0e382c;
+            --view-color: green;
+        }
+
+        .container {
+            font-family: 'Noto Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            /* border: 2px solid red; */
+            height: 5em;
+            background-color: white;
+            position: sticky;
+            z-index: 10;
+            top: 0;
+        }
+
+        ul li {
+            display: inline;
+            list-style: none;
+            font-size: 1.25em;
+        }
+
+        a {
+            transition: all 0.25s ease-in 0s;
+            color: black;
+            text-decoration: none;
+            margin: 10px 30px;
+        }
+
+        .logo,
+        .search,
+        .admin {
+            margin: 8px 40px;
+        }
+
+        a:hover {
+            font-size: 1.5em;
+            font-weight: 100;
+            color: var(--primary-color);
+        }
+
+        input {
+            font-family: 'Noto Sans', sans-serif;
+            position: absolute;
+            right: 29em;
+            width: 16rem;
+            height: 2.4rem;
+            border-radius: 3rem;
+            padding-left: 4em;
+            font-size: 12px;
+            border: none;
+            box-shadow: 2px 2px 6px grey;
+            outline: none;
+        }
+
+        .admin {
+            position: absolute;
+            right: 10em;
+        }
+
+        .search {
+            position: absolute;
+            right: 33em;
+            cursor: pointer;
+        }
+
+        .banner {
+            font-family: 'Noto Sans', sans-serif;
+            color: white;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            /* border: 2px solid red; */
+            height: 6rem;
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .banner h1 {
+            padding-left: 170px;
+            font-weight: 100;
+            font-size: 1.5em;
+        }
+
+        .banner-1 {
+            position: absolute;
+            right: 16em;
+            font-size: 16px;
+            font-weight: bolder;
+            padding: 8px 20px;
+            border-radius: 3em;
+            border: 2px solid white;
+        }
+
+        .banner-1:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .items {
+            display: flex;
+            /* border: 2px solid red; */
+            height: 400px;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .h-1 {
+            font-family: 'Noto Sans', sans-serif;
+            position: absolute;
+            color: var(--primary-color);
+            left: 125px;
+        }
+
+        .maal {
+            font-family: 'Noto Sans', sans-serif;
+            /* border: 2px solid red; */
+            height: 220px;
+            width: 180px;
+            color: white;
+            padding-top: 1rem;
+            box-shadow: 2px 2px 6px grey;
+            text-align: center;
+            font-weight: bold;
+            background: cover;
+            transition: all 0.25s ease-in-out 0s;
+            margin-right: 15px;
+        }
+
+        .maal:hover {
+            height: 250px;
+            width: 200px;
+        }
+
+        #item1 {
+            background-image: url('c-1.jpg');
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        #item2 {
+            background-image: url('c-2.jpg');
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        #item3 {
+            background-image: url('c-3.jpg');
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        #item4 {
+            background-image: url('c-4.jpg');
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        #item5 {
+            background-image: url('c-5.jpg');
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        #item6 {
+            background-image: url('c-6.jpg');
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        .container-1 {
+            background-color: rgb(252, 245, 236);
+            /* border: 2px solid red; */
+            height: 350px;
+        }
+
+        .container-head:before {
+            background: url('star.png') no-repeat;
+        }
+
+        .container-head {
+            display: flex;
+            /* border: 2px solid red; */
+            height: 80px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .h-11 {
+            font-family: 'Noto Sans', sans-serif;
+            padding-left: 110px;
+            color: var(--primary-color);
+        }
+
+        .view {
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--view-color);
+            position: absolute;
+            font-size: 1.2em;
+            right: 150px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .card-list-p {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-list {
+            display: flex;
+            /* border: 2px solid red; */
+            align-items: center;
+            justify-content: space-between;
+            height: 220px;
+            width: 85%;
+        }
+
+        .card {
+            /* border: 2px solid red; */
+            background-color: white;
+            box-shadow: 2px 2px 6px grey;
+            border-radius: 15px;
+            height: 200px;
+            width: 400px;
+        }
+
+        .footer-1 {
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: bold;
+            /* border: 2px solid red; */
+            margin: 20px;
+            height: 2.5em;
+            width: 21em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .banner-2 {
+            background-color: var(--view-color);
+            box-shadow: 1px 1px 3px green;
+            color: white;
+            font-size: 16px;
+            font-weight: bolder;
+            padding: 8px 20px;
+            border-radius: 3em;
+            /* border: 2px solid white; */
+        }
+
+        .banner-2:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .card-item-1 {
+            background: url('m-1-min.jpg') no-repeat;
+            background-size: cover;
+            /* border: 2px solid red; */
+            border-radius: 15px;
+            margin: 20px 20px;
+            height: 100px;
+            width: 100px;
+        }
+
+        .card-item-1-header {
+            position: relative;
+            left: 130px;
+            /* border: 2px solid red; */
+            height: 6em;
+            width: 12em;
+            background: url('veg.png') no-repeat;
+            background-size: 20px;
+        }
+
+        .card-item-1-header-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .card-item-1-header-title-detail {
+            font-size: 0.6em;
+            color: rgb(156, 151, 151);
+        }
+
+
+        .card-item-2 {
+            background: url('m-2-min.jpg') no-repeat;
+            background-size: cover;
+            /* border: 2px solid red; */
+            border-radius: 15px;
+            margin: 20px 20px;
+            height: 100px;
+            width: 100px;
+        }
+
+        .card-item-2-header {
+            position: relative;
+            left: 130px;
+            /* border: 2px solid red; */
+            height: 6em;
+            width: 12em;
+            background: url('veg.png') no-repeat;
+            background-size: 20px;
+        }
+
+        .card-item-2-header-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .card-item-2-header-title-detail {
+            font-size: 0.6em;
+            color: rgb(156, 151, 151);
+        }
+
+        .card-item-3 {
+            background: url('m-3-min.jpg') no-repeat;
+            background-size: cover;
+            /* border: 2px solid red; */
+            border-radius: 15px;
+            margin: 20px 20px;
+            height: 100px;
+            width: 100px;
+        }
+
+        .card-item-3-header {
+            position: relative;
+            left: 130px;
+            /* border: 2px solid red; */
+            height: 6em;
+            width: 12em;
+            background: url('veg.png') no-repeat;
+            background-size: 20px;
+        }
+
+        .card-item-3-header-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .card-item-3-header-title-detail {
+            font-size: 0.6em;
+            color: rgb(156, 151, 151);
+        }
+
+        .container-2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+        }
+
+        .card-disp {
+            /* border: 2px solid red; */
+            border-radius: 15px;
+            background: url('banner-img.png') no-repeat;
+            background-size: contain;
+            background-color: #ffdfc3;
+            height: 70%;
+            width: 85%;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-content {
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .card-disp-detail {
+            /* border: 2px solid red; */
+            margin-left: 11em;
+            height: 14em;
+            width: 65%;
+        }
+
+        .card-bold-title {
+            font-size: 1.7em;
+            font-weight: 600;
+            margin: 12px 0px;
+        }
+
+        .card-title-detail {
+            font-size: 1.2em;
+            margin-bottom: 3em;
+        }
+
+        .card-item-price {
+            font-size: 0.8em;
+        }
+
+        .item-price {
+            font-size: 1.5em;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: bold;
+            margin-top: 0.2em;
+        }
+
+        .side-bar {
+            /* border: 2px solid red; */
+            height: 14em;
+            width: 14em;
+            margin-left: 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .side-bar-top {
+            font-family: 'Noto Sans', sans-serif;
+            margin-left: 4.5em;
+        }
+
+        .order-button {
+            font-family: 'Noto Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            box-shadow: 1px 1px 6px grey;
+            justify-content: center;
+            /* border: 2px solid red; */
+            border-radius: 3em;
+            background-color: white;
+            height: 3.5em;
+        }
+
+        .order-button:hover {
+            background-color: var(--view-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .container-3 {
+            background-color: #edebe9;
+            display: flex;
+            height: 600px;
+            justify-content: center;
+            margin-bottom: 6em;
+        }
+
+        .inner-container {
+            /* border: 2px solid red; */
+            height: 550px;
+            width: 82%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .title-inner-container {
+            /* border: 2px solid red; */
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .title-inner-container-left {
+            /* border: 2px solid red; */
+            display: flex;
+            align-items: center;
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            font-weight: bold;
+
+        }
+
+        .title-inner-container-right {
+            /* border: 2px solid red; */
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--view-color);
+            font-size: 1.2em;
+            right: 150px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .inner-container-down {
+            /* border: 2px solid red; */
+            box-shadow: inset 0px -140px 324px rgb(0 0 0);
+            border-radius: 1em;
+            height: 450px;
+            background: url("banner-disp.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            padding-left: 3em;
+        }
+
+        .inner-container-down-button {
+            /* border: 2px solid red; */
+            color: var(--view-color);
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 600;
+            margin: 30px 0px;
+            width: 8em;
+            text-align: center;
+            padding: 0.3em;
+            border-radius: 1em;
+            background: white;
+        }
+
+        .inner-container-down:hover {
+            box-shadow: inset 5px -208px 437px 50px rgb(0 0 0);
+            transition: all 0.25s ease-in-out 0s;
+        }
+
+        .inner-container-down-title {
+            /* border: 2px solid red; */
+            display: flex;
+            flex-direction: column;
+            height: 50%;
+            width: 90%;
+            justify-content: flex-end;
+            margin-bottom: 3em;
+
+        }
+
+        .inner-container-down-title-h1 {
+            /* border: 2px solid green; */
+            font-family: 'Noto Sans', sans-serif;
+            color: white;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 0.6em;
+        }
+
+        .inner-container-down-title-h2 {
+            /* border: 2px solid green; */
+            font-family: 'Noto Sans', sans-serif;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .inner-container-down-learn-btn {
+            font-family: 'Noto Sans', sans-serif;
+            border: 2px solid white;
+            color: black;
+            border-radius: 3em;
+            width: 14%;
+            text-align: center;
+            cursor: pointer;
+            padding: 0.8em;
+            background-color: white;
+            font-weight: 600;
+        }
+
+        .footer-end {
+            /* border: 2px solid red; */
+            background-color: #0e382c;
+            height: 600px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .footer-end-1 {
+            /* border: 2px solid red; */
+            width: 80%;
+            height: 65%;
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .footer-end-2 {
+            /* border: 2px solid red; */
+            display: flex;
+            width: 80%;
+            border-top: 1px solid #a0a0a0;
+            padding-top: 1em;
+
+        }
+
+        .footer-end-2-d1 {
+            font-family: 'Noto Sans', sans-serif;
+            display: flex;
+            color: white;
+            align-items: center;
+        }
+
+        .d1-column1,
+        .d1-column2,
+        .d1-column3 {
+            border-right: 1px solid #b3b3b3;
+            margin-right: 1em;
+            padding-right: 1em;
+            font-size: .9em;
+        }
+
+        .d1-column4 {
+            margin-right: 1em;
+            padding-right: 31em;
+        }
+
+        .d1-column5 {
+            margin-right: 1em;
+            padding-right: 1em;
+        }
+
+        .d1-column4 {
+            font-size: .9em;
+        }
+
+        .d1-column5 {
+            font-size: .6em;
+        }
+
+        .footer-end-c1 {
+            /* border: 2px solid red; */
+            height: 70%;
+            width: 200px;
+            display: flex;
+            background: url("logo.png") no-repeat;
+            background-size: 80px;
+        }
+
+        .footer-end-c2 {
+            /* border: 2px solid red; */
+            height: 70%;
+            width: 200px;
+        }
+
+        .footer-end-c3 {
+            /* border: 2px solid red; */
+            height: 70%;
+            width: 200px;
+            /* display: flex; */
+        }
+
+        .footer-end-c4 {
+            /* border: 2px solid red; */
+            height: 70%;
+            width: 200px;
+            /* display: flex; */
+        }
+
+        .footer-end-c5 {
+            /* border: 2px solid red; */
+            height: 70%;
+            width: 200px;
+            /* display: flex; */
+        }
+
+        .footer-end-c6 {
+            /* border: 2px solid red; */
+            height: 70%;
+            width: 200px;
+            /* display: flex; */
+
+        }
+
+        /* 
+        .footer-end-c2-t2 :{
+            border: 2px solid red;
+
+        }
+
+        .footer-end-c3-t3 {
+            border: 2px solid red;
+        }
+
+        .footer-end-c4-t4 {
+            border: 2px solid red;
+        }
+
+        .footer-end-c5-t5 {
+            border: 2px solid red;
+        } */
+
+        .footer-end-c6-t6 {
+            /* border: 2px solid red; */
+            background: url(download.png) no-repeat;
+            background-size: contain;
+            width: 100%;
+            height: 16em;
+        }
+
+        .d2 {
+            font-family: 'Noto Sans', sans-serif;
+            /* border: 2px solid red; */
+            color: white;
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+
+        .d3,
+        .d4,
+        .d5,
+        .d6,
+        .d7 {
+            font-family: 'Noto Sans', sans-serif;
+            /* border: 2px solid red; */
+            color: white;
+            margin-top: 2.7em;
+        }
+
+        .d3,
+        .d4,
+        .d5,
+        .d6,
+        .d7:hover {
+            font-family: 'Noto Sans', sans-serif;
+            /* border: 2px solid red; */
+            margin-top: 2.7em;
+            cursor: pointer;
+        }
+
+        .d3-b {
+            /* border: 2px solid red; */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .d3-1,
+        .d3-2,
+        .d3-3 {
+            /* border: 2px solid red; */
+            height: 3em;
+            width: 3em;
+        }
+
+        .d3-1 {
+            background: url('insta.png') no-repeat;
+            background-size: 2em;
+            filter: invert(100%);
+        }
+
+        .d3-2 {
+            background: url('facebook.png') no-repeat;
+            background-size: 2em;
+            filter: invert(100%);
+        }
+
+        .d3-3 {
+            background: url('twitter.png') no-repeat;
+            background-size: 2em;
+            filter: invert(100%);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <div class="logo">
+            <img src="logo.png" alt="Star-Bucks-logo" height="52px" width="52px">
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Gift</a></li>
+            <li><a href="#">Order</a></li>
+            <li><a href="#">Pay</a></li>
+            <li><a href="#">Store</a></li>
+        </ul>
+        <input type="search" placeholder="Looking for something Specific?">
+        <div class="search">
+            <img src="search.png" alt="#" height="30px" width="30px">
+        </div>
+        <div class="admin">
+            <img src="admin.png" alt="" height="50px" width="50px">
+        </div>
+    </header>
+
+    <div class="banner">
+        <h1>A world of reward awaits you! Sign up now.</h1>
+        <span class="banner-1">Know More</span>
+    </div>
+
+    <h1 class="h-1">Handcrafted Curations</h1>
+    <div class="items">
+        <div class="maal" id="item1">Best Sellers</div>
+        <div class="maal" id="item2">Drinks</div>
+        <div class="maal" id="item3">Food</div>
+        <div class="maal" id="item4">Merchandise</div>
+        <div class="maal" id="item5">Coffee at home</div>
+        <div class="maal" id="item6">Ready to Eat</div>
+    </div>
+    <div class="container-1">
+        <div class="container-head">
+            <h1 class="h-11">Barista Recommends</h1>
+            <span class="view">View Menu</span>
+            <span class="star"><img src="star.png" alt="" height="57px" width="70px"></span>
+        </div>
+        <div class="card-list-p">
+            <div class="card-list">
+                <div class="card">
+                    <div class="card-item-1">
+                        <div class="card-item-1-header">
+                            <div class="card-item-1-header-title">Java Chip Frappuccino <div
+                                    class="card-item-1-header-title-detail">TALL(Tall Java Chip Frapuccino) .392 kcal
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-1">Rs.351/-<div class="banner-2">Add Item</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-item-2">
+                        <div class="card-item-2-header">
+                            <div class="card-item-2-header-title">Cold Coffee <div
+                                    class="card-item-2-header-title-detail">TALL(Tall Cold Coffee) .354 kcal</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-1">Rs.383/-<div class="banner-2">Add Item</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-item-3">
+                        <div class="card-item-3-header">
+                            <div class="card-item-3-header-title">Vanilla Sweet Cream Brew Cold Brew <div
+                                    class="card-item-3-header-title-detail">TALL(Tall Vanilla Sweet Cream Cold brew) .63
+                                    kcal</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-1">Rs.278/-<div class="banner-2">Add Item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-2">
+        <div class="card-disp">
+            <div class="card-disp-detail">
+                <div class="card-content">Try Our Bestsellers
+                    <div class="card-bold-title">Tandoori Paneer</div>
+                    <div class="card-title-detail"> Sandwich with paneer and vegetables flavoured with tandoori masala
+                        in a multi-grain bread. </div>
+                    <div class="card-item-price">Starting from
+                        <div class="item-price">Rs.345/-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-bar">
+                <div class="side-bar-top ">*Selected cities only</div>
+                <div class="order-button">Order Now</div>
+            </div>
+        </div>
+    </div>
+    <div class="container-3">
+        <div class="inner-container">
+            <div class="title-inner-container">
+                <div class="title-inner-container-left">Learn more about the world of coffee!</div>
+                <div class="title-inner-container-right">Discover More</div>
+            </div>
+            <div class="inner-container-down">
+                <div class="inner-container-down-button">Coffee Culture</div>
+                <div class="inner-container-down-title">
+                    <div class="inner-container-down-title-h1">Coffee – Origin Story : Mystic, Intriguing And Aromatic
+                    </div>
+                    <div class="inner-container-down-title-h2"> Many centuries ago, somewhere between 800-900 AD the
+                        story of coffee first took roots in Ethiopia. </div>
+                </div>
+                <div class="inner-container-down-learn-btn">Learn More</div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-end">
+        <div class="footer-end-1">
+            <div class="footer-end-c1">
+                <div class="footer-end-c1-t1"></div>
+            </div>
+            <div class="footer-end-c2">
+                <div class="footer-end-c2-t2">
+                    <div class="d2-t"></div>
+                    <div class="d2">About Us</div>
+                    <div class="d3">Our Heritage</div>
+                    <div class="d4">Our Company</div>
+                    <div class="d5">Coffeehouse</div>
+                </div>
+            </div>
+            <div class="footer-end-c3">
+                <div class="footer-end-c3-t3">
+                    <div class="d3-t"></div>
+                    <div class="d2">Responsibility</div>
+                    <div class="d3">Community</div>
+                    <div class="d4">Ethical Sourcing</div>
+                    <div class="d5">Environment</div>
+                    <div class="d6">Diversity</div>
+                </div>
+            </div>
+            <div class="footer-end-c4">
+                <div class="footer-end-c4-t4">
+                    <div class="d4-t"></div>
+                    <div class="d2">Quick Links</div>
+                    <div class="d3">Careers</div>
+                    <div class="d4">Season's Gifting</div>
+                    <div class="d5">FAQs</div>
+                    <div class="d6">Customer Service</div>
+                    <div class="d7">Delivery</div>
+                </div>
+            </div>
+            <div class="footer-end-c5">
+                <div class="footer-end-c5-t5">
+                    <div class="d5-t"></div>
+                    <div class="d2">SOCIAL MEDIA</div>
+                    <div class="d3">
+                        <div class="d3-b">
+                            <div class="d3-1"></div>
+                            <div class="d3-2"></div>
+                            <div class="d3-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-end-c6">
+                <div class="footer-end-c6-t6">
+                </div>
+            </div>
+        </div>
+        <div class="footer-end-2">
+            <ul class="footer-end-2-d1">
+                <li class="d1-column1">Web Accessibility</li>
+                <li class="d1-column2">Privacy Statement</li>
+                <li class="d1-column3">Terms of Use</li>
+                <li class="d1-column4">Contact Us</li>
+                <li class="d1-column5">© 2022 Starbucks Coffee Company. All rights reserved.</li>
+            </ul>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
