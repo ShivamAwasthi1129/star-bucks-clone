@@ -1,1 +1,1 @@
-# star-bucks-clone
+# StarBucks (Dashboard) Clone
